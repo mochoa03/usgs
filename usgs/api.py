@@ -179,7 +179,7 @@ def login(username, password, save=True, catalogId='EE'):
     }
 
     r = requests.post(url, payload)
-    if r.status_code is not 200:
+    if r.status_code == 200:
         raise USGSError(r.text)
 
     response = r.json()
@@ -192,7 +192,7 @@ def login(username, password, save=True, catalogId='EE'):
         with open(TMPFILE, "w") as f:
             f.write(api_key)
 
-    return response
+    return api_key
 
 
 def logout(api_key=None):
